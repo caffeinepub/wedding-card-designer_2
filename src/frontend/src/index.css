@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=Parisienne&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm ivory/cream wedding palette */
+    --background: 0.975 0.008 65;
+    --foreground: 0.22 0.02 40;
+
+    --card: 0.985 0.005 60;
+    --card-foreground: 0.22 0.02 40;
+
+    --popover: 0.985 0.005 60;
+    --popover-foreground: 0.22 0.02 40;
+
+    /* Rose gold primary */
+    --primary: 0.62 0.1 20;
+    --primary-foreground: 0.98 0.005 60;
+
+    /* Champagne secondary */
+    --secondary: 0.93 0.025 70;
+    --secondary-foreground: 0.35 0.04 30;
+
+    --muted: 0.94 0.012 60;
+    --muted-foreground: 0.52 0.03 40;
+
+    /* Blush accent */
+    --accent: 0.9 0.04 15;
+    --accent-foreground: 0.3 0.04 15;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 60;
+
+    --border: 0.88 0.02 50;
+    --input: 0.88 0.02 50;
+    --ring: 0.62 0.1 20;
+
+    --radius: 0.5rem;
+
+    --chart-1: 0.62 0.1 20;
+    --chart-2: 0.75 0.08 45;
+    --chart-3: 0.55 0.12 300;
+    --chart-4: 0.7 0.1 60;
+    --chart-5: 0.5 0.14 15;
+
+    --sidebar: 0.975 0.008 65;
+    --sidebar-foreground: 0.22 0.02 40;
+    --sidebar-primary: 0.62 0.1 20;
+    --sidebar-primary-foreground: 0.98 0.005 60;
+    --sidebar-accent: 0.9 0.04 15;
+    --sidebar-accent-foreground: 0.3 0.04 15;
+    --sidebar-border: 0.88 0.02 50;
+    --sidebar-ring: 0.62 0.1 20;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "DM Sans", sans-serif;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+/* Wedding card preview styles */
+.card-preview-wrapper {
+  box-shadow: 0 20px 60px -10px rgba(120, 60, 40, 0.2), 0 8px 24px -4px
+    rgba(0, 0, 0, 0.1);
+}
+
+/* Template-specific card styles */
+.template-floral {
+  background-color: #fdf5f0;
+  background-image: url("/assets/generated/wedding-template-floral.dim_800x560.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Playfair Display", serif;
+  color: #5c2d2d;
+}
+
+.template-modern {
+  background-color: #f5f7f4;
+  background-image: url("/assets/generated/wedding-template-modern.dim_800x560.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "DM Sans", sans-serif;
+  color: #2c3a2a;
+}
+
+.template-vintage {
+  background-color: #fdf6ec;
+  background-image: url("/assets/generated/wedding-template-vintage.dim_800x560.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Playfair Display", serif;
+  color: #4a3000;
+}
+
+.template-garden {
+  background: linear-gradient(145deg, #f0f7ec 0%, #e8f5e1 50%, #f5f9f2 100%);
+  font-family: "Parisienne", cursive;
+  color: #2d5a1b;
+}
+
+.template-royal {
+  background: linear-gradient(180deg, #0d1b3e 0%, #1a2d5a 50%, #0d1b3e 100%);
+  font-family: "Playfair Display", serif;
+  color: #f0d87a;
+}
+
+.template-celestial {
+  background: linear-gradient(180deg, #05091a 0%, #0c1535 50%, #050820 100%);
+  font-family: "Parisienne", cursive;
+  color: #c8d8f0;
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.star-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
