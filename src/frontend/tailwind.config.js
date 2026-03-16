@@ -10,15 +10,13 @@ export default {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      screens: { "2xl": "1400px" },
     },
     extend: {
       fontFamily: {
-        display: ["'Playfair Display'", "serif"],
-        script: ["'Parisienne'", "cursive"],
-        body: ["'DM Sans'", "sans-serif"],
+        display: ["'Playfair Display'", "Georgia", "serif"],
+        body: ["'Playfair Display'", "Georgia", "serif"],
+        devanagari: ["'Noto Sans Devanagari'", "serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -71,32 +69,15 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        "rose-gold": {
-          50: "#fdf5f0",
-          100: "#fbe8de",
-          200: "#f6c8b0",
-          300: "#f0a07e",
-          400: "#e87050",
-          500: "#b5674a",
-          600: "#8c4a34",
-        },
-        champagne: {
-          50: "#fdfaf3",
-          100: "#f9f0d6",
-          200: "#f2dfa8",
-          300: "#e8c870",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 8px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        card: "0 4px 24px -4px rgba(120,60,40,0.12), 0 1px 4px rgba(0,0,0,0.06)",
-        "card-hover": "0 12px 40px -8px rgba(120,60,40,0.2), 0 4px 12px rgba(0,0,0,0.08)",
-        invitation: "0 20px 60px -10px rgba(120,60,40,0.25), 0 8px 24px -4px rgba(0,0,0,0.12)",
+        gold: "0 0 30px rgba(255,215,0,0.3)",
+        divine: "0 0 60px rgba(255,215,0,0.15)",
       },
       keyframes: {
         "accordion-down": {
@@ -107,20 +88,10 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(12px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
-          to: { opacity: "1", transform: "scale(1)" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.5s ease-out forwards",
-        "scale-in": "scale-in 0.3s ease-out forwards",
       },
     },
   },

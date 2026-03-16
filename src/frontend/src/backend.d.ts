@@ -7,25 +7,23 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export interface Design {
-    id: string;
-    weddingDate: string;
-    venue: string;
-    templateId: string;
+export interface Message {
+    content: string;
+    role: string;
+    timestamp: bigint;
+}
+export interface Session {
+    id: bigint;
+    messages: Array<Message>;
     createdAt: Time;
-    partner2Name: string;
-    rsvpDetails: string;
     updatedAt: Time;
-    message: string;
-    partner1Name: string;
-    designName: string;
 }
 export type Time = bigint;
 export interface backendInterface {
-    deleteDesign(id: string): Promise<void>;
-    getAllDesigns(): Promise<Array<Design>>;
-    getAllDesignsSortedByName(): Promise<Array<Design>>;
-    getDesign(id: string): Promise<Design>;
-    saveDesign(partner1Name: string, partner2Name: string, weddingDate: string, venue: string, message: string, rsvpDetails: string, templateId: string, designName: string): Promise<string>;
-    updateDesign(id: string, partner1Name: string, partner2Name: string, weddingDate: string, venue: string, message: string, rsvpDetails: string, templateId: string, designName: string): Promise<void>;
+    deleteSession(id: bigint): Promise<void>;
+    getAllSessions(): Promise<Array<Session>>;
+    getAllSessionsSortedById(): Promise<Array<Session>>;
+    getSession(id: bigint): Promise<Session>;
+    saveSession(id: bigint, messages: Array<Message>): Promise<void>;
+    updateSession(id: bigint, messages: Array<Message>): Promise<void>;
 }

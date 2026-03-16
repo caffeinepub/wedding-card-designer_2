@@ -89,111 +89,109 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface Design {
-    id: string;
-    weddingDate: string;
-    venue: string;
-    templateId: string;
+export interface Message {
+    content: string;
+    role: string;
+    timestamp: bigint;
+}
+export interface Session {
+    id: bigint;
+    messages: Array<Message>;
     createdAt: Time;
-    partner2Name: string;
-    rsvpDetails: string;
     updatedAt: Time;
-    message: string;
-    partner1Name: string;
-    designName: string;
 }
 export type Time = bigint;
 export interface backendInterface {
-    deleteDesign(id: string): Promise<void>;
-    getAllDesigns(): Promise<Array<Design>>;
-    getAllDesignsSortedByName(): Promise<Array<Design>>;
-    getDesign(id: string): Promise<Design>;
-    saveDesign(partner1Name: string, partner2Name: string, weddingDate: string, venue: string, message: string, rsvpDetails: string, templateId: string, designName: string): Promise<string>;
-    updateDesign(id: string, partner1Name: string, partner2Name: string, weddingDate: string, venue: string, message: string, rsvpDetails: string, templateId: string, designName: string): Promise<void>;
+    deleteSession(id: bigint): Promise<void>;
+    getAllSessions(): Promise<Array<Session>>;
+    getAllSessionsSortedById(): Promise<Array<Session>>;
+    getSession(id: bigint): Promise<Session>;
+    saveSession(id: bigint, messages: Array<Message>): Promise<void>;
+    updateSession(id: bigint, messages: Array<Message>): Promise<void>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
-    async deleteDesign(arg0: string): Promise<void> {
+    async deleteSession(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.deleteDesign(arg0);
+                const result = await this.actor.deleteSession(arg0);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.deleteDesign(arg0);
+            const result = await this.actor.deleteSession(arg0);
             return result;
         }
     }
-    async getAllDesigns(): Promise<Array<Design>> {
+    async getAllSessions(): Promise<Array<Session>> {
         if (this.processError) {
             try {
-                const result = await this.actor.getAllDesigns();
+                const result = await this.actor.getAllSessions();
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getAllDesigns();
+            const result = await this.actor.getAllSessions();
             return result;
         }
     }
-    async getAllDesignsSortedByName(): Promise<Array<Design>> {
+    async getAllSessionsSortedById(): Promise<Array<Session>> {
         if (this.processError) {
             try {
-                const result = await this.actor.getAllDesignsSortedByName();
+                const result = await this.actor.getAllSessionsSortedById();
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getAllDesignsSortedByName();
+            const result = await this.actor.getAllSessionsSortedById();
             return result;
         }
     }
-    async getDesign(arg0: string): Promise<Design> {
+    async getSession(arg0: bigint): Promise<Session> {
         if (this.processError) {
             try {
-                const result = await this.actor.getDesign(arg0);
+                const result = await this.actor.getSession(arg0);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getDesign(arg0);
+            const result = await this.actor.getSession(arg0);
             return result;
         }
     }
-    async saveDesign(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string, arg7: string): Promise<string> {
+    async saveSession(arg0: bigint, arg1: Array<Message>): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.saveDesign(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+                const result = await this.actor.saveSession(arg0, arg1);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.saveDesign(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            const result = await this.actor.saveSession(arg0, arg1);
             return result;
         }
     }
-    async updateDesign(arg0: string, arg1: string, arg2: string, arg3: string, arg4: string, arg5: string, arg6: string, arg7: string, arg8: string): Promise<void> {
+    async updateSession(arg0: bigint, arg1: Array<Message>): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.updateDesign(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                const result = await this.actor.updateSession(arg0, arg1);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateDesign(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            const result = await this.actor.updateSession(arg0, arg1);
             return result;
         }
     }

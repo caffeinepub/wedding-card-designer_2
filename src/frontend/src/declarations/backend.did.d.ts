@@ -10,33 +10,25 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface Design {
-  'id' : string,
-  'weddingDate' : string,
-  'venue' : string,
-  'templateId' : string,
+export interface Message {
+  'content' : string,
+  'role' : string,
+  'timestamp' : bigint,
+}
+export interface Session {
+  'id' : bigint,
+  'messages' : Array<Message>,
   'createdAt' : Time,
-  'partner2Name' : string,
-  'rsvpDetails' : string,
   'updatedAt' : Time,
-  'message' : string,
-  'partner1Name' : string,
-  'designName' : string,
 }
 export type Time = bigint;
 export interface _SERVICE {
-  'deleteDesign' : ActorMethod<[string], undefined>,
-  'getAllDesigns' : ActorMethod<[], Array<Design>>,
-  'getAllDesignsSortedByName' : ActorMethod<[], Array<Design>>,
-  'getDesign' : ActorMethod<[string], Design>,
-  'saveDesign' : ActorMethod<
-    [string, string, string, string, string, string, string, string],
-    string
-  >,
-  'updateDesign' : ActorMethod<
-    [string, string, string, string, string, string, string, string, string],
-    undefined
-  >,
+  'deleteSession' : ActorMethod<[bigint], undefined>,
+  'getAllSessions' : ActorMethod<[], Array<Session>>,
+  'getAllSessionsSortedById' : ActorMethod<[], Array<Session>>,
+  'getSession' : ActorMethod<[bigint], Session>,
+  'saveSession' : ActorMethod<[bigint, Array<Message>], undefined>,
+  'updateSession' : ActorMethod<[bigint, Array<Message>], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

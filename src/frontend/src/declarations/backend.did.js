@@ -8,109 +8,51 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const Message = IDL.Record({
+  'content' : IDL.Text,
+  'role' : IDL.Text,
+  'timestamp' : IDL.Int,
+});
 export const Time = IDL.Int;
-export const Design = IDL.Record({
-  'id' : IDL.Text,
-  'weddingDate' : IDL.Text,
-  'venue' : IDL.Text,
-  'templateId' : IDL.Text,
+export const Session = IDL.Record({
+  'id' : IDL.Nat,
+  'messages' : IDL.Vec(Message),
   'createdAt' : Time,
-  'partner2Name' : IDL.Text,
-  'rsvpDetails' : IDL.Text,
   'updatedAt' : Time,
-  'message' : IDL.Text,
-  'partner1Name' : IDL.Text,
-  'designName' : IDL.Text,
 });
 
 export const idlService = IDL.Service({
-  'deleteDesign' : IDL.Func([IDL.Text], [], []),
-  'getAllDesigns' : IDL.Func([], [IDL.Vec(Design)], ['query']),
-  'getAllDesignsSortedByName' : IDL.Func([], [IDL.Vec(Design)], ['query']),
-  'getDesign' : IDL.Func([IDL.Text], [Design], ['query']),
-  'saveDesign' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-      ],
-      [IDL.Text],
-      [],
-    ),
-  'updateDesign' : IDL.Func(
-      [
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-      ],
-      [],
-      [],
-    ),
+  'deleteSession' : IDL.Func([IDL.Nat], [], []),
+  'getAllSessions' : IDL.Func([], [IDL.Vec(Session)], ['query']),
+  'getAllSessionsSortedById' : IDL.Func([], [IDL.Vec(Session)], ['query']),
+  'getSession' : IDL.Func([IDL.Nat], [Session], ['query']),
+  'saveSession' : IDL.Func([IDL.Nat, IDL.Vec(Message)], [], []),
+  'updateSession' : IDL.Func([IDL.Nat, IDL.Vec(Message)], [], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const Message = IDL.Record({
+    'content' : IDL.Text,
+    'role' : IDL.Text,
+    'timestamp' : IDL.Int,
+  });
   const Time = IDL.Int;
-  const Design = IDL.Record({
-    'id' : IDL.Text,
-    'weddingDate' : IDL.Text,
-    'venue' : IDL.Text,
-    'templateId' : IDL.Text,
+  const Session = IDL.Record({
+    'id' : IDL.Nat,
+    'messages' : IDL.Vec(Message),
     'createdAt' : Time,
-    'partner2Name' : IDL.Text,
-    'rsvpDetails' : IDL.Text,
     'updatedAt' : Time,
-    'message' : IDL.Text,
-    'partner1Name' : IDL.Text,
-    'designName' : IDL.Text,
   });
   
   return IDL.Service({
-    'deleteDesign' : IDL.Func([IDL.Text], [], []),
-    'getAllDesigns' : IDL.Func([], [IDL.Vec(Design)], ['query']),
-    'getAllDesignsSortedByName' : IDL.Func([], [IDL.Vec(Design)], ['query']),
-    'getDesign' : IDL.Func([IDL.Text], [Design], ['query']),
-    'saveDesign' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-        ],
-        [IDL.Text],
-        [],
-      ),
-    'updateDesign' : IDL.Func(
-        [
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-        ],
-        [],
-        [],
-      ),
+    'deleteSession' : IDL.Func([IDL.Nat], [], []),
+    'getAllSessions' : IDL.Func([], [IDL.Vec(Session)], ['query']),
+    'getAllSessionsSortedById' : IDL.Func([], [IDL.Vec(Session)], ['query']),
+    'getSession' : IDL.Func([IDL.Nat], [Session], ['query']),
+    'saveSession' : IDL.Func([IDL.Nat, IDL.Vec(Message)], [], []),
+    'updateSession' : IDL.Func([IDL.Nat, IDL.Vec(Message)], [], []),
   });
 };
 
